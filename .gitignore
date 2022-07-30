@@ -1,31 +1,30 @@
-# compiled output
-/dist
-/node_modules
+# VSCode - Favorites extension
+.favorites.json
 
 # Logs
 logs
 *.log
 npm-debug.log*
-pnpm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
 
-# OS
-.DS_Store
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Output of 'npm pack'
+*.tgz
 
 # Tests
 /coverage
 /.nyc_output
-
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
 
 # IDE - VSCode
 .vscode/*
