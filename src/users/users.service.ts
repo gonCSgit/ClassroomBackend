@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, Schema } from 'mongoose';
+import { Model } from 'mongoose';
 import { CreateUserDto } from 'src/dto/create-user.dto';
 import * as bcrypt from 'bcrypt';
 import { UserDto } from 'src/dto/user.dto';
@@ -15,7 +15,7 @@ export class UsersService {
     return this.userModel.findOne({ username: username }).exec();
   }
 
-  async findById(id: Schema.Types.ObjectId) {
+  async findById(id: string) {
     return await this.userModel.findById(id);
   }
 
@@ -34,20 +34,19 @@ export class UsersService {
     return await newUser.save();
   }
 
-  // The Object.assign(target, source) method copies all enumerable own properties
-  // from one or more source objects to a target object.
-  // It returns the modified target object.
-  async update(id: Schema.Types.ObjectId, attrs: Partial<UserDto>) {
-    const user = await this.findById(id);
-    if (!user) {
-      throw new Error('User not found');
-    }
+  async update(id: string, attrs: UserDto) {
     // TBD: Encryption needs to happen again if password is changed
-    Object.assign(user, attrs);
-    return await user.save();
+    const existingUser = await this.userModel.findOneAndUpdate(
+      { _id: id },
+      attrs,
+      {
+        new: true,
+      },
+    );
+    return existingUser;
   }
 
-  async remove(id: Schema.Types.ObjectId) {
+  async remove(id: string) {
     const user = await this.findById(id);
     if (!user) {
       throw new Error('User not found');

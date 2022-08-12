@@ -23,21 +23,18 @@ export class UsersController {
   }
 
   @Get('/:id')
-  async findById(@Param('id') id: Schema.Types.ObjectId) {
-    return this.usersService.findById(id);
+  async findById(@Param('id') id: string) {
+    return await this.usersService.findById(id);
   }
 
   @Delete('/:id')
-  async removeUser(@Param('id') id: Schema.Types.ObjectId) {
-    return this.usersService.remove(id);
+  async removeUser(@Param('id') id: string) {
+    return await this.usersService.remove(id);
   }
 
   //TBD: Fix patch method
   @Patch('/:id')
-  async updateUser(
-    @Param('id') id: Schema.Types.ObjectId,
-    @Body('body') body: UpdateUserDto,
-  ) {
-    return this.usersService.update(id, body);
+  async updateUser(@Param('id') id: string, @Body() attrs: UpdateUserDto) {
+    return await this.usersService.update(id, attrs);
   }
 }
