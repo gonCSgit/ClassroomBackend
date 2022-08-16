@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 // import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { AuthService } from './auth.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
 
@@ -18,11 +19,14 @@ import { UsersService } from './users.service';
 // @Serialize(UserDto)
 @Controller('auth')
 export class UsersController {
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private authService: AuthService,
+  ) {}
 
   @Post('/signup')
   async newUser(@Body() body: CreateUserDto) {
-    await this.usersService.newUser(body);
+    await this.authService.signup(body);
     return null;
   }
 
