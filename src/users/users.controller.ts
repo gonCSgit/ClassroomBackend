@@ -7,11 +7,15 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { Schema } from 'mongoose';
-import { CreateUserDto } from 'src/dto/create-user.dto';
+// import { Serialize } from 'src/interceptors/serialize.interceptor';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
 
+// This custom decorator would serialize outgoing responses by remove the password prop.
+// But because mongoose is able to do this at the service level I will not use it.
+
+// @Serialize(UserDto)
 @Controller('auth')
 export class UsersController {
   constructor(private usersService: UsersService) {}
@@ -24,6 +28,7 @@ export class UsersController {
 
   @Get('/:id')
   async findById(@Param('id') id: string) {
+    console.log('handler is running');
     return await this.usersService.findById(id);
   }
 
@@ -32,7 +37,6 @@ export class UsersController {
     return await this.usersService.remove(id);
   }
 
-  //TBD: Fix patch method
   @Patch('/:id')
   async updateUser(@Param('id') id: string, @Body() attrs: UpdateUserDto) {
     return await this.usersService.update(id, attrs);

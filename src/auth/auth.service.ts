@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 import * as bcrypt from 'bcrypt';
-import { UserDto } from 'src/dto/user.dto';
+import { LoginUserDto } from 'src/users/dto/login-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +13,7 @@ export class AuthService {
 
   // Passport strategy will expect a full user if validation is successful or a null if it fails
   // Failure is defined as either the user is not found, or, in the case of passport-local, the password does not match
-  async validateUser(username: string, pass: string): Promise<UserDto> {
+  async validateUser(username: string, pass: string): Promise<LoginUserDto> {
     const user = await this.usersService.findOneByUsername(username);
     if (await bcrypt.compare(pass, user.password)) {
       return user;

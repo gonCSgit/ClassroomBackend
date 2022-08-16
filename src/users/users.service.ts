@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateUserDto } from 'src/dto/create-user.dto';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import * as bcrypt from 'bcrypt';
-import { UserDto } from 'src/dto/user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -12,16 +12,14 @@ export class UsersService {
   ) {}
 
   async findOneByUsername(username: string) {
+    // find({ username: username }, '-password')  test later
     return this.userModel.findOne({ username: username }).exec();
   }
 
   async findById(id: string) {
-    return await this.userModel.findById(id);
+    // Will return every field available except the password
+    return await this.userModel.findById(id, '-password');
   }
-
-  // async find(class_id: string) {
-  //   return this.userModel.find({ class_id });
-  // }
 
   // Never pass a plain object to save method! By creating an instance
   // from the model we are making sure any hooks defined on the schema will
@@ -34,7 +32,7 @@ export class UsersService {
     return await newUser.save();
   }
 
-  async update(id: string, attrs: UserDto) {
+  async update(id: string, attrs: UpdateUserDto) {
     // TBD: Encryption needs to happen again if password is changed
     const existingUser = await this.userModel.findOneAndUpdate(
       { _id: id },
