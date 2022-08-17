@@ -11,8 +11,8 @@
 //     private jwtService: JwtService,
 //   ) {}
 
-  // Passport strategy will expect a full user if validation is successful or a null if it fails
-  // Failure is defined as either the user is not found, or, in the case of passport-local, the password does not match
+// Passport strategy will expect a full user if validation is successful or a null if it fails
+// Failure is defined as either the user is not found, or, in the case of passport-local, the password does not match
 //   async validateUser(username: string, pass: string): Promise<LoginUserDto> {
 //     const user = await this.usersService.findOneByUsername(username);
 //     if (await bcrypt.compare(pass, user.password)) {
