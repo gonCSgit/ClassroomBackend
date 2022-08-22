@@ -20,6 +20,3 @@ async function bootstrap() {
   await app.listen(3001);
 }
 bootstrap();
-
-// TBD:
-// Make use of validation pipe whitelist for security measure
