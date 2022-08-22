@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document, ObjectId } from 'mongoose';
 
-export type TeacherDocument = Teacher & Document;
+export type StudentDocument = Student & Document;
 
 @Schema()
-export class Teacher {
+export class Student {
   @Prop({ required: true })
   firstName: string;
 
@@ -12,10 +12,7 @@ export class Teacher {
   lastName: string;
 
   @Prop()
-  role: 'teacher';
-
-  @Prop({ default: false })
-  teachApproval: boolean;
+  role: 'student';
 
   @Prop({
     type: mongoose.Schema.Types.ObjectId,
@@ -24,4 +21,4 @@ export class Teacher {
   userId: ObjectId;
 }
 
-export const TeacherSchema = SchemaFactory.createForClass(Teacher);
+export const StudentSchema = SchemaFactory.createForClass(Student);
