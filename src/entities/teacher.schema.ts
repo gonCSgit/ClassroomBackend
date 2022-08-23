@@ -20,6 +20,7 @@ export class Teacher {
   @Prop({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
+    required: true,
   })
   userId: ObjectId;
 }

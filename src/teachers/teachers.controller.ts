@@ -17,4 +17,9 @@ export class TeachersController {
   ) {
     return this.teachersService.newTeacher(teacher, currentUser);
   }
+
+  @Post('signup')
+  async teacherSignup(@Body() teacher: CreateTeacherDto) {
+    return this.teachersService.teacherSignup(teacher);
+  }
 }
