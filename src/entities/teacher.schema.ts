@@ -11,7 +11,7 @@ export class Teacher {
   @Prop({ required: true })
   lastName: string;
 
-  @Prop()
+  @Prop({ immutable: true })
   role: 'teacher';
 
   @Prop({ default: false })
