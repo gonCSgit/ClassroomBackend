@@ -10,14 +10,22 @@ export class UsersService {
     @InjectModel('User') private readonly userModel: Model<UserDto>,
   ) {}
 
-  async findOneByUsername(username: string) {
+  async findByEmail(email: string) {
     // find({ username: username }, '-password')  test later
-    return this.userModel.findOne({ username: username }).exec();
+    return this.userModel.find({ email: email }, '-password');
   }
 
   async findById(id: string) {
     // Will return every field available except the password
     return await this.userModel.findById(id, '-password');
+  }
+
+  async findAllStudents() {
+    return await this.userModel.find({ role: 'student' }, '-password');
+  }
+
+  async findAllTeachers() {
+    return await this.userModel.find({ role: 'teacher' }, '-password');
   }
 
   async update(id: string, attrs: UpdateUserDto) {

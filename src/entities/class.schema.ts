@@ -5,14 +5,14 @@ export type ClassDocument = Class & Document;
 
 @Schema()
 export class Class {
-  @Prop({ maxlength: 24 })
+  @Prop({ maxlength: 24, default: '' })
   name: string;
 
-  @Prop()
+  @Prop({ default: '', required: true })
   summary: string;
 
   @Prop({ type: mongoose.SchemaTypes.Date })
-  date: Date;
+  date: string;
 
   @Prop({
     enum: [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300],
@@ -20,10 +20,15 @@ export class Class {
   })
   duration: number;
 
-  // @Prop()
-  // students: ObjectId[];
+  @Prop([
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'StudentAttendance',
+    },
+  ])
+  studentAttendance: [];
 
-  @Prop()
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   teacher: ObjectId;
 }
 

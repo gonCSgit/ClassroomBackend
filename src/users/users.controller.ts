@@ -13,6 +13,7 @@ import { AuthGuard } from 'src/guards/auth.guard';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators/current-user.decorator';
+import { LoginUserDto } from './dto/login-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
 
@@ -34,17 +35,16 @@ export class UsersController {
   }
 
   @Post('/signup')
-  async newUser(@Body() body: CreateUserDto, @Session() session: any) {
+  async newUser(@Body() body: CreateUserDto) {
     const user = await this.authService.signup(body);
-    session.userId = user.id;
-    return user;
+    return user.email;
   }
 
   @Post('/signin')
-  async signin(@Body() body: CreateUserDto, @Session() session: any) {
+  async signin(@Body() body: LoginUserDto, @Session() session: any) {
     const user = await this.authService.signin(body);
     session.userId = user.id;
-    return user;
+    return user.email;
   }
 
   @Post('/signout')

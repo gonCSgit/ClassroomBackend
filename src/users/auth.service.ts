@@ -23,21 +23,22 @@ export class AuthService {
 
   async signup(user: CreateUserDto) {
     const newUser = new this.userModel({
-      username: user.username,
+      email: user.email,
       password: await bcrypt.hash(user.password, 10),
+      firstName: user.firstName,
+      lastName: user.lastName,
     });
     try {
       await newUser.save();
     } catch (error) {
-      throw new UnauthorizedException('Username already exists');
+      console.log(error);
+      throw new UnauthorizedException('Email already exists');
     }
     return newUser;
   }
 
   async signin(user: LoginUserDto) {
-    const userQ = await this.userModel
-      .findOne({ username: user.username })
-      .exec();
+    const userQ = await this.userModel.findOne({ email: user.email }).exec();
     if (!userQ) {
       throw new NotFoundException('User not found');
     }
