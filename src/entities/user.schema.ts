@@ -17,6 +17,7 @@ export class User {
   })
   email: string;
 
+  // DO NOT ADD MAX LENGTH HERE. This is where the hash is stored!
   @Prop({ required: true })
   password: string;
 

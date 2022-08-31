@@ -1,6 +1,11 @@
 import { IsAlpha, IsEmail, Length } from 'class-validator';
+import mongoose from 'mongoose';
 
 export class CreateUserDto {
+  _id: mongoose.ObjectId;
+
+  role: string;
+
   @IsEmail()
   email: string;
 

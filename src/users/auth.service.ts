@@ -38,13 +38,21 @@ export class AuthService {
   }
 
   async signin(user: LoginUserDto) {
-    const userQ = await this.userModel.findOne({ email: user.email }).exec();
+    const userQ = await this.userModel.findOne({ email: user.email });
     if (!userQ) {
       throw new NotFoundException('User not found');
     }
     if ((await bcrypt.compare(user.password, userQ.password)) === false) {
       throw new UnauthorizedException();
     }
-    return userQ;
+    // TBD: Should return at least the user's role
+    const userR = {
+      id: userQ._id,
+      email: userQ.email,
+      firstName: userQ.firstName,
+      lastName: userQ.lastName,
+      role: userQ.role,
+    };
+    return userR;
   }
 }
