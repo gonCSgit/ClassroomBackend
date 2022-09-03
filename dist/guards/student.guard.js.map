@@ -1,1 +1,0 @@
-{"version":3,"file":"student.guard.js","sourceRoot":"","sources":["../../src/guards/student.guard.ts"],"names":[],"mappings":";;;AAEA,MAAa,UAAU;IACrB,WAAW,CAAC,OAAyB;QACnC,MAAM,OAAO,GAAG,OAAO,CAAC,YAAY,EAAE,CAAC,UAAU,EAAE,CAAC;QACpD,IAAI,OAAO,CAAC,OAAO,CAAC,IAAI,KAAK,SAAS,IAAI,OAAO,EAAE;YACjD,OAAO,KAAK,CAAC;SACd;IACH,CAAC;CACF;AAPD,gCAOC"}

@@ -11,7 +11,11 @@ node_modules/
 jspm_packages/
 
 # Dist directory
+<<<<<<< HEAD
 /dist
+=======
+dist/
+>>>>>>> parent of 53bb781 (dist folder)
 
 # TypeScript cache
 *.tsbuildinfo
