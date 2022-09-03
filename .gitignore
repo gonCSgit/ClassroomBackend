@@ -11,7 +11,7 @@ node_modules/
 jspm_packages/
 
 # Dist directory
-
+/dist
 
 # TypeScript cache
 *.tsbuildinfo
