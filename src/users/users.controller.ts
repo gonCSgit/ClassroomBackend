@@ -7,9 +7,9 @@ import {
   Patch,
   Post,
   Session,
-  // UseGuards,
+  UseGuards,
 } from '@nestjs/common';
-// import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthGuard } from 'src/guards/auth.guard';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators/current-user.decorator';
@@ -27,7 +27,7 @@ export class UsersController {
   ) {}
 
   @Get('/whoami')
-  // @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard)
   // When passing an argument to a custom decorator it will
   // be used as the first parameter in its decorator function definition
   whoAmI(@CurrentUser() user: any) {
