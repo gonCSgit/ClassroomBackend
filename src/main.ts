@@ -1,4 +1,4 @@
-import { ValidationPipe } from '@nestjs/common';
+// import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -12,11 +12,11 @@ async function bootstrap() {
     }),
   );
   app.enableCors();
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-    }),
-  );
+  // app.useGlobalPipes(
+  //   new ValidationPipe({
+  //     whitelist: true,
+  //   }),
+  // );
   await app.listen(3001);
 }
 bootstrap();
