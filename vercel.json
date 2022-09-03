@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "env": {
+    "MONGO_DB_URI": "@classroom_api_uri"
+  },
   "builds": [
     {
       "src": "dist/main.ts",
