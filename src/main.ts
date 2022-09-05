@@ -6,11 +6,11 @@ const cookieSession = require('cookie-session');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors({
-    origin: false,
-    // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    // credentials: true,
-  });
+  // app.enableCors({
+  // origin: false,
+  // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  // credentials: true,
+  // });
   app.use(
     cookieSession({
       keys: ['koyaanisqatsi'],
