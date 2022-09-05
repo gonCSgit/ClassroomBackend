@@ -6,12 +6,28 @@ const cookieSession = require('cookie-session');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors({
+    origin: true,
+    allowedHeaders: [
+      'X-CSRF-Token',
+      'X-Requested-With',
+      'Accept',
+      'Accept-Version',
+      'Content-Length',
+      'Content-MD5',
+      'Content-Type',
+      'Date',
+      'X-Api-Version',
+    ],
+    credentials: true,
+    optionsSuccessStatus: 200,
+    preflightContinue: false,
+  });
   app.use(
     cookieSession({
       keys: ['koyaanisqatsi'],
     }),
   );
-  app.enableCors();
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
