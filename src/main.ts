@@ -11,7 +11,9 @@ async function bootstrap() {
       keys: ['koyaanisqatsi'],
     }),
   );
-  app.enableCors();
+  app.enableCors({
+    origin: ['*'],
+  });
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
