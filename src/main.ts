@@ -19,6 +19,7 @@ async function bootstrap() {
       'Date',
       'X-Api-Version',
     ],
+    methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,
     optionsSuccessStatus: 200,
     preflightContinue: true,
