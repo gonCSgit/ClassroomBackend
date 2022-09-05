@@ -21,7 +21,7 @@ async function bootstrap() {
     ],
     credentials: true,
     optionsSuccessStatus: 200,
-    preflightContinue: false,
+    preflightContinue: true,
   });
   app.use(
     cookieSession({
