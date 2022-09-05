@@ -22,7 +22,7 @@ async function bootstrap() {
     methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,
     optionsSuccessStatus: 200,
-    preflightContinue: true,
+    preflightContinue: false,
   });
   app.use(
     cookieSession({
