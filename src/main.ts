@@ -11,7 +11,7 @@ async function bootstrap() {
       keys: ['koyaanisqatsi'],
     }),
   );
-  // app.enableCors();
+  app.enableCors({ origin: /\.vercel\.com$/ });
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
