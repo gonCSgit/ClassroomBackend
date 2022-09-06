@@ -3,6 +3,17 @@ import mongoose, { Document, ObjectId } from 'mongoose';
 
 export type ClassDocument = Class & Document;
 
+class Attendance {
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  studentId: ObjectId;
+
+  @Prop({ default: false, required: true })
+  attendance: boolean;
+
+  @Prop({ enum: [...Array(21).keys()], default: 0 })
+  evaluation: number;
+}
+
 @Schema()
 export class Class {
   @Prop({ maxlength: 24, default: '' })
@@ -22,14 +33,14 @@ export class Class {
 
   @Prop([
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'StudentAttendance',
+      type: [Attendance],
+      default: [],
     },
   ])
-  studentAttendance: [];
+  studentAttendance: Attendance[];
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
-  teacher: ObjectId;
+  teacherId: ObjectId;
 }
 
 export const ClassSchema = SchemaFactory.createForClass(Class);

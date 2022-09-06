@@ -6,10 +6,7 @@ export type StudentAttendanceDocument = StudentAttendance & Document;
 @Schema()
 export class StudentAttendance {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
-  id: string;
-
-  @Prop()
-  studentName: string;
+  studentId: string;
 
   @Prop({ default: false })
   attendance: boolean;
