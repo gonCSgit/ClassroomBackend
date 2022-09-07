@@ -13,19 +13,19 @@ export class ClassesService {
     @InjectModel('Class') private readonly classModel: Model<CreateClassDto>,
   ) {}
 
-  async newClass(newClassObject: CreateClassDto) {
-    const classObject = new this.classModel({
-      //   email: user.email,
-      //   password: await bcrypt.hash(user.password, 10),
-      //   firstName: user.firstName,
-      //   lastName: user.lastName,
+  async newClass(classObject: CreateClassDto) {
+    const newClassObject = new this.classModel({
+      name: classObject.name,
+      summary: classObject.summary,
+      date: classObject.date,
+      duration: classObject.duration,
     });
     try {
-      await classObject.save();
+      await newClassObject.save();
     } catch (error) {
       console.log(error);
       throw new UnauthorizedException();
     }
-    return classObject;
+    return newClassObject;
   }
 }

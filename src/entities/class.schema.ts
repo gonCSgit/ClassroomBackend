@@ -1,25 +1,15 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document, ObjectId } from 'mongoose';
+import { ClassAttendance } from './class-attendance.schema';
 
 export type ClassDocument = Class & Document;
-
-class Attendance {
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
-  studentId: ObjectId;
-
-  @Prop({ default: false, required: true })
-  attendance: boolean;
-
-  @Prop({ enum: [...Array(21).keys()], default: 0 })
-  evaluation: number;
-}
 
 @Schema()
 export class Class {
   @Prop({ maxlength: 24, default: '' })
   name: string;
 
-  @Prop({ default: '', required: true })
+  @Prop({ default: '' })
   summary: string;
 
   @Prop({ type: mongoose.SchemaTypes.Date })
@@ -33,13 +23,12 @@ export class Class {
 
   @Prop([
     {
-      type: [Attendance],
-      default: [],
+      type: ClassAttendance,
     },
   ])
-  studentAttendance: Attendance[];
+  classAttendance: ClassAttendance[];
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  @Prop({ type: mongoose.SchemaTypes.ObjectId, ref: 'User' })
   teacherId: ObjectId;
 }
 

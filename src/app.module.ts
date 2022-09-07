@@ -5,10 +5,12 @@ import { AppConfigurationModule } from './app-config.module';
 import { AppConfigurationService } from './app-config.service';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
+import { ClassesModule } from './classes/classes.module';
 
 @Module({
   imports: [
     UsersModule,
+    ClassesModule,
     AppConfigurationModule,
     // To give this module the database’s connection string,
     // you have to get it from the .env file and the only way to do it
