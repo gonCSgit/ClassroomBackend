@@ -4,6 +4,7 @@ import { ClassAttendanceSchema } from 'src/entities/class-attendance.schema';
 import { UsersService } from 'src/users/users.service';
 import { ClassSchema } from '../entities/class.schema';
 import { UserSchema } from '../entities/user.schema';
+import { AttendanceService } from './attendance.service';
 import { ClassesController } from './classes.controller';
 import { ClassesService } from './classes.service';
 
@@ -16,6 +17,6 @@ import { ClassesService } from './classes.service';
     ]),
   ],
   controllers: [ClassesController],
-  providers: [ClassesService, UsersService],
+  providers: [ClassesService, UsersService, AttendanceService],
 })
 export class ClassesModule {}
