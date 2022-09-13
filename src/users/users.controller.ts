@@ -14,7 +14,7 @@ import { CreateUserDto } from '../users/dto/create-user.dto';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { LoginUserDto } from './dto/login-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { UserDto } from './dto/user.dto';
 import { UsersService } from './users.service';
 
 @Controller('auth')
@@ -55,7 +55,7 @@ export class UsersController {
   @Get('/:id')
   async findById(@Param('id') id: string) {
     // console.log('handler is running');
-    return await this.usersService.findById(id);
+    return await this.usersService.findUserById(id);
   }
 
   @Delete('/:id')
@@ -63,8 +63,12 @@ export class UsersController {
     return await this.usersService.remove(id);
   }
 
+  // @AdminGuard
   @Patch('/:id')
-  async updateUser(@Param('id') id: string, @Body() attrs: UpdateUserDto) {
+  async updateUser(
+    @Param('id') id: string,
+    @Body() attrs: Omit<UserDto, 'role'>,
+  ) {
     return await this.usersService.update(id, attrs);
   }
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Param, Post } from '@nestjs/common';
 // import { UsersService } from 'src/users/users.service';
 import { AttendanceService } from './attendance.service';
 import { ClassesService } from './classes.service';
@@ -23,9 +23,9 @@ export class ClassesController {
   //     return await this.classesService.findById(id);
   //   }
 
-  @Post('attendance')
-  async newAttendance(@Body() body?: string) {
-    const attendance = await this.attendanceService.newAttendance(body);
+  @Post(':id')
+  async newAttendance(@Param('id') param: string, @Body() body?: string) {
+    const attendance = await this.attendanceService.newAttendance(param, body);
     return attendance;
   }
 }

@@ -1,17 +1,23 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
-import { UsersService } from '../users/users.service';
+import { ClassDto } from './dto/class.dto';
+// import { CreateUserDto } from 'src/users/dto/create-user.dto';
+// import { UsersService } from '../users/users.service';
 import { CreateClassDto } from './dto/create-class.dto';
 
 @Injectable()
 export class ClassesService {
   constructor(
-    private usersService: UsersService,
-    @InjectModel('User') private readonly userModel: Model<CreateUserDto>,
-    @InjectModel('Class') private readonly classModel: Model<CreateClassDto>,
+    // private usersService: UsersService,
+    // @InjectModel('User') private readonly userModel: Model<CreateUserDto>,
+    @InjectModel('Class') private readonly classModel: Model<ClassDto>,
   ) {}
+
+  async classById(id: string) {
+    const classObj = await this.classModel.findById(id);
+    return classObj;
+  }
 
   async newClass(classObject: CreateClassDto) {
     const newClassObject = new this.classModel({

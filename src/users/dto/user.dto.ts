@@ -12,4 +12,7 @@ export class UserDto {
 
   @Expose()
   role: string;
+
+  @Expose()
+  adminApproved: boolean;
 }

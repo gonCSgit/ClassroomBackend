@@ -16,7 +16,7 @@ export class CurrentUserMiddleware implements NestMiddleware {
 
     if (userId) {
       // TBD add role to session object?
-      const user = await this.usersService.findById(userId);
+      const user = await this.usersService.findUserById(userId);
       req.currentUser = user;
     }
 
