@@ -1,5 +1,5 @@
-import { Controller, Param, Put } from '@nestjs/common';
-import { TeachersService } from './teacher.service';
+import { Controller, Get, Param, Put } from '@nestjs/common';
+import { TeachersService } from './teachers.service';
 
 @Controller('teachers')
 export class TeachersController {
@@ -10,5 +10,11 @@ export class TeachersController {
   async approveTeacher(@Param('id') param: string) {
     const approval = await this.teachersService.approveById(param);
     return approval;
+  }
+
+  @Get()
+  async findAll() {
+    const list = await this.teachersService.findAllTeachers();
+    return list;
   }
 }

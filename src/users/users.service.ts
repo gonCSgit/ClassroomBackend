@@ -19,14 +19,6 @@ export class UsersService {
     return await this.userModel.findById(id, '-password');
   }
 
-  async findAllStudents() {
-    return await this.userModel.find({ role: 'student' }, '-password');
-  }
-
-  async findAllTeachers() {
-    return await this.userModel.find({ role: 'teacher' }, '-password');
-  }
-
   async update(id: string, attrs: Omit<UserDto, 'role'>) {
     const existingUser = await this.userModel.findOneAndUpdate(
       { _id: id },

@@ -14,6 +14,10 @@ export class ClassesService {
     @InjectModel('Class') private readonly classModel: Model<ClassDto>,
   ) {}
 
+  async findAllClasses() {
+    return await this.classModel.find();
+  }
+
   async classById(id: string) {
     const classObj = await this.classModel.findById(id);
     return classObj;
