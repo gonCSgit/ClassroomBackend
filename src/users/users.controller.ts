@@ -17,7 +17,7 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { UserDto } from './dto/user.dto';
 import { UsersService } from './users.service';
 
-@Controller('auth')
+@Controller('users')
 // Interceptors are decorators able to modify outgoing objects
 // before and/or after they've been handled
 export class UsersController {

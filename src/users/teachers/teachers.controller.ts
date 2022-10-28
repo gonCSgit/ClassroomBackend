@@ -5,9 +5,9 @@ import { TeachersService } from './teachers.service';
 export class TeachersController {
   constructor(private teachersService: TeachersService) {}
 
-  @Put(':id')
+  @Put(':teacherId')
   //Make change in portfolio :teacherId
-  async approveTeacher(@Param('id') param: string) {
+  async approveTeacher(@Param('teacherId') param: string) {
     const approval = await this.teachersService.approveById(param);
     return approval;
   }

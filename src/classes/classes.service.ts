@@ -38,4 +38,14 @@ export class ClassesService {
     }
     return newClassObject;
   }
+
+  async findClasses(email: string) {
+    const list = this.classModel.find({ email: email });
+    return list;
+  }
+
+  async findAttendance(email: string) {
+    const classes = this.classModel.find({ 'classAttendance.email': email });
+    return classes;
+  }
 }
